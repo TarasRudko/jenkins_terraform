@@ -1,8 +1,6 @@
 pipeline {
 
-  agent {
-    kubernetes
-  }
+  agent any
  // {
  //   label 'cd-jenkins-jenkins-agent'
  // }
