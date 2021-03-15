@@ -7,7 +7,7 @@ pipeline {
   }
 
   stages {    
-    stage('TF Plan') {
+    stage('TF test') {
        steps {
          container('terraform') {
            sh 'terraform version'
