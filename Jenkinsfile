@@ -1,9 +1,9 @@
 pipeline {
 
-  agent
-  {
-    label 'cd-jenkins-jenkins-agent'
-  }
+  agent kubernetes
+ // {
+ //   label 'cd-jenkins-jenkins-agent'
+ // }
 
   environment {
      SVC_ACCOUNT_KEY = credentials('terraform-auth')
