@@ -44,10 +44,10 @@ pipeline {
       steps {
         container('terraform') {
           withCredentials([file(credentialsId: 'terraform-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-            sh terraform apply -input=false plan-to-deploy'
+            sh 'terraform apply -input=false plan-to-deploy'
           }
         }
       }
     }
-   }
+  }
 }
