@@ -2,7 +2,7 @@ pipeline {
 
   agent 
   {
-    label 'cd-jenkins-jenkins-agent'
+    label 'jnlp'
   }
 
   environment {
