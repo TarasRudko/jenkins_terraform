@@ -13,7 +13,7 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scm
-        withCredentials([file(credentialsId: 'terraform-aith', variable: 'GC_KEY')]) {
+        withCredentials([file(credentialsId: 'terraform-auth', variable: 'GC_KEY')]) {
 
   
         sh 'mkdir -p creds'
