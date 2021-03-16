@@ -13,9 +13,13 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scm
+        withCredentials([file(credentialsId: 'terraform-aith', variable: 'GC_KEY')]) {
+
+  
         sh 'mkdir -p creds'
-        sh 'echo $SVC_ACCOUNT_KEY'
-        sh 'echo $SVC_ACCOUNT_KEY |base64 -d  > ./creds/serviceaccount.json'
+        sh 'echo $GC_KEY'
+        sh 'echo $GC_KEY |base64 -d  > ./creds/serviceaccount.json'
+        }
       }
     }
     stage('TF init') {
