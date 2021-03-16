@@ -25,9 +25,10 @@ pipeline {
     stage('TF init') {
        steps {
          container('terraform') {
-          withCredentials([file(credentialsId: 'terraform-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-          sh 'terraform init'
-          sh 'terraform plan -out myplan'
+           withCredentials([file(credentialsId: 'terraform-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+            sh 'terraform init'
+            sh 'terraform plan -out myplan'
+           }
          }
        }
      }
