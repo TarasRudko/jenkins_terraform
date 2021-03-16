@@ -2,7 +2,7 @@ pipeline {
 
   agent 
   {
-    label 'jnlp'
+    label 'terraform'
   }
 
   environment {
