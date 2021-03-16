@@ -7,6 +7,7 @@ pipeline {
 
   environment {
      TF_LOG = 'INFO'
+    
   }
 
   stages {
@@ -29,6 +30,13 @@ pipeline {
             sh 'terraform init'
             sh 'terraform plan -out myplan'
            }
+         }
+       }
+     }
+     stage('TF plan') {
+       steps {
+         container('terraform') {
+            sh 'terraform plan -out myplan'
          }
        }
      }
