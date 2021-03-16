@@ -1,6 +1,6 @@
 pipeline {
 
-  agent any // {     label 'terraform'   }
+  agent {     label 'terraform'   }
   
   environment {
      TF_LOG = '' // Use TRACE for debug info
