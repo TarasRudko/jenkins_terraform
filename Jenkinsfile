@@ -10,12 +10,11 @@ pipeline {
   }
 
   stages {    
-    stage('TF test') {
+    stage('TF init') {
        steps {
          container('terraform') {
-           sh 'terraform version'
-          // sh 'terraform init'
-          // sh 'terraform plan -out myplan'
+          sh 'terraform init'
+          sh 'terraform plan -out myplan'
          }
        }
      }
