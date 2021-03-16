@@ -2,7 +2,7 @@ pipeline {
 
   agent 
   {
-    label 'terraform'
+    label 'cd-jenkins-jenkins-agent'
   }
 
   environment {
