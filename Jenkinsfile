@@ -6,7 +6,7 @@ pipeline {
   }
 
   environment {
-     TF_LOG = 'INFO'
+     TF_LOG = '' // Use TRACE for debug info
     
   }
 
@@ -28,17 +28,26 @@ pipeline {
          container('terraform') {
            withCredentials([file(credentialsId: 'terraform-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
             sh 'terraform init'
-            sh 'terraform plan -out myplan'
+            sh 'terraform plan -out plan-to-deploy'
            }
          }
        }
      }
-     stage('TF plan') {
-       steps {
-         container('terraform') {
-            sh 'terraform plan -out myplan'
-         }
-       }
-     }
+    stage('Approval') {
+      steps {
+        script {
+          def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+        }
+      }
+    }    
+    stage('TF Apply') {
+      steps {
+        container('terraform') {
+          withCredentials([file(credentialsId: 'terraform-auth', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+            sh terraform apply -input=false plan-to-deploy'
+          }
+        }
+      }
+    }
    }
 }
