@@ -7,6 +7,7 @@ pipeline {
 
   environment {
      SVC_ACCOUNT_KEY = credentials('terraform-auth')
+     TF_LOG = 'DEBUG'
   }
 
   stages {
