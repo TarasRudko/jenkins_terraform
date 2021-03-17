@@ -6,7 +6,7 @@ pipeline {
     string(name: 'FORCE_PROJECT_ID', defaultValue: '', description: 'Use Google Project ID despite the branch name')
   }
   environment {
-    PROJECT_ID = or(params.FORCE_PROJECT_ID, inferProject('ss-pp-build-d'))
+    PROJECT_ID = params.FORCE_PROJECT_ID //or(params.FORCE_PROJECT_ID, inferProject('ss-pp-build-d'))
     REGION = 'us-central1'
     ZONE = 'us-central1-c'
     TIER = relaxedEnvJson("${PROJECT_ID}_labels")["tier"].toString()
