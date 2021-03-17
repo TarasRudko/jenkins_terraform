@@ -9,7 +9,7 @@ pipeline {
     PROJECT_ID = '${FORCE_PROJECT_ID}' //or(params.FORCE_PROJECT_ID, inferProject('ss-pp-build-d'))
     REGION = 'us-central1'
     ZONE = 'us-central1-c'
-    TIER = relaxedEnvJson("${PROJECT_ID}_labels")["tier"].toString()
+    // TIER = relaxedEnvJson("${PROJECT_ID}_labels")["tier"].toString()
     GOOGLE_APPLICATION_CREDENTIALS = credentials('terraform-auth')
   }  
   stages {
