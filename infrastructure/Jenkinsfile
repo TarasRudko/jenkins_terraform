@@ -16,7 +16,7 @@ pipeline {
     stage('Terraform') {
       steps {
         container('terraform') {
-          dir("infrastructure/datalake") {
+          dir("infrastructure/pheonix") {
             sh "terraform --version"
             sh "terraform init -lock-timeout=60s -no-color -backend-config=bucket=${PROJECT_ID}-terraform-state"
             sh "terraform plan -lock-timeout=60s -no-color" +
