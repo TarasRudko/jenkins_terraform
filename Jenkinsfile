@@ -13,6 +13,25 @@ pipeline {
     GOOGLE_APPLICATION_CREDENTIALS = credentials('terraform-auth')
   }  
   stages {
+    stage('Terraform') {
+      steps {
+        container('terraform') {
+          dir("infrastructure/datalake") {
+            sh "terraform --version"
+            sh "terraform init -lock-timeout=60s -no-color -backend-config=bucket=${PROJECT_ID}-terraform-state"
+            sh "terraform plan -lock-timeout=60s -no-color" +
+                " -var project=${PROJECT_ID}" +
+                " -var region=${REGION}" +
+                " -var zone=${ZONE}"
+            sh "terraform apply -lock-timeout=60s -no-color -auto-approve" +
+                " -var project=${PROJECT_ID}" +
+                " -var region=${REGION}" +
+                " -var zone=${ZONE}"
+          }
+        }
+      }
+    }
+    
     stage('Checkout') {
       steps {
         checkout scm
