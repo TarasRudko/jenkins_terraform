@@ -27,7 +27,7 @@ pipeline {
                         returnStdout: true
                     ).trim().tokenize().last()
                 }
-                step([$class: 'ClassicUploadStep', credentialsId: 'enkins-backup-sa',  
+                step([$class: 'ClassicUploadStep', credentialsId: 'jenkins-backup-sa',  
                 bucket: "gs://${PROJECT_ID}-jenkins-backup/backups/",
                       pattern: JENKINS_BACKUP_FILE_NAME])
                 
