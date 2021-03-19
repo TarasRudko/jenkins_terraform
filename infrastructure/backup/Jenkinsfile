@@ -26,7 +26,7 @@ pipeline {
                         returnStdout: true
                     ).trim().tokenize().last()
                 }
-                step([$class: 'ClassicUploadStep', credentialsId: 'es-s2dl-core-d-duplicate-key-added',  
+                step([$class: 'ClassicUploadStep', credentialsId: 'jenkins-backup-sa',  
                 bucket: "gs://es-s2dl-core-d-build-tools/backups/",
                       pattern: JENKINS_BACKUP_FILE_NAME])
                 
